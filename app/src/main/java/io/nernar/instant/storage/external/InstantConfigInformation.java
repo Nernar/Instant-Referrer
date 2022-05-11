@@ -7,7 +7,8 @@ public class InstantConfigInformation extends AbstractResource {
 	{
 		put(new TranslationResource("description",
 			"Miscellaneous Instant Referrer options and several internal visual interface patches.",
-			"Основные настройки среды раннего запуска и некоторых частей встроенных патчей интерфейса."));
+			"Основные настройки среды раннего запуска и некоторых частей встроенных патчей интерфейса.",
+			"Основні налаштування середовища раннього запуску і деяких частин вбудованих патчів інтерфейсу."));
 		put(new Properties());
 	}
 	
@@ -48,7 +49,8 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Environment",
-					"Среда"));
+					"Среда",
+					"Середовище"));
 				put("collapsible", false);
 				put("index", 0);
 			}
@@ -63,8 +65,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Informative progress",
-					"Информативный прогресс"));
-				put("description", "Показывать больше информации в выполняемых задачах, в том числе их количество и затраченное время.");
+					"Информативный прогресс",
+					"Інформативний прогрес"));
+				put(new TranslationResource("description",
+					"Show more information in performed tasks, including their count and spent time.",
+					"Показывать больше информации в выполняемых задачах, в том числе их количество и затраченное время.",
+					"Показувати більше інформації у виконуваних задачах, в тому числі їх кількість і витрачений час."));
 				put("index", 1);
 			}
 			
@@ -78,8 +84,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Immersive mode",
-					"Безграничный режим"));
-				put("description", "Расширять содержимое окна, делая системные панели навигации прозрачными.");
+					"Безграничный режим",
+					"Безрамковий режим"));
+				put(new TranslationResource("description",
+					"Expand window contents, making system navigation panels transparent.",
+					"Расширять содержимое окна, делая системные панели навигации прозрачными.",
+					"Розширювати вміст вікна, роблячи системні панелі навігації прозорими."));
 				put("index", 2);
 			}
 			
@@ -104,8 +114,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Auto-launch Override",
-					"Перезапись авто-запуска"));
-				put("description", "Игнорировать входящий системный флаг авто-запуска, заменяя его встроенным флажком.");
+					"Перезапись авто-запуска",
+					"Перезапис авто-запуску"));
+				put(new TranslationResource("description",
+					"Ignore incoming auto-start system flag, replacing it with a built-in flag.",
+					"Игнорировать входящий системный флаг авто-запуска, заменяя его встроенным флажком.",
+					"Ігнорувати вхідний системний прапорець авто-запуску, замінюючи його вбудованим прапорцем."));
 				put("index", 3);
 			}
 			
@@ -119,8 +133,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Abort Ability",
-					"Возможность отмены"));
-				put("description", "Добавить возможность отменить запуск пака, не перезапуская приложение.");
+					"Возможность отмены",
+					"Можливість відмінии"));
+				put(new TranslationResource("description",
+					"Add ability to cancel pack launch without restarting application.",
+					"Добавить возможность отменить запуск пака, не перезапуская приложение.",
+					"Додати можливість відмінювати запуск паку не перезавантажуючи програму."));
 				put("index", 4);
 			}
 			
@@ -134,7 +152,8 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Background",
-					"Компоновка"));
+					"Компоновка",
+					"Фон"));
 				put("collapsible", false);
 				put("index", 5);
 			}
@@ -149,8 +168,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Shuffle Art",
-					"Перемешать арты"));
-				put("description", "Случайно изменять порядок фоновых артов после каждого запуска.");
+					"Перемешать арты",
+					"Змішати арти"));
+				put(new TranslationResource("description",
+					"Randomly change order of background art after each launch.",
+					"Случайно изменять порядок фоновых артов после каждого запуска.",
+					"Випадково змінювати порядок фонових артів після кожного запуску."));
 				put("index", 6);
 			}
 			
@@ -186,8 +209,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Force Fullscreen",
-					"Полноэкранный режим"));
-				put("description", "Растянуть изображение компоновки на весь экран.");
+					"Полноэкранный режим",
+					"Повноекранний режим"));
+				put(new TranslationResource("description",
+					"Stretch content layout image to full screen.",
+					"Растянуть изображение компоновки на весь экран.",
+					"Растянуть изображение компоновки на весь экран."));
 				put("index", 7);
 			}
 			
@@ -223,7 +250,8 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Distribution",
-					"Распространение"));
+					"Распространение",
+					"Розповсюдження"));
 				put("collapsible", false);
 				put("index", 8);
 			}
@@ -238,8 +266,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Had Minecraft",
-					"Наличие Майнкрафта"));
-				put("description", "Игнорировать наличие установленной игре на устройстве, обозначая прочую собственную покупку.");
+					"Наличие Майнкрафта",
+					"Наявність Майнкрафту"));
+				put(new TranslationResource("description",
+					"Ignore presence of device installed game, indicating other own purchase.",
+					"Игнорировать наличие установленной игре на устройстве, обозначая прочую собственную покупку.",
+					"Ігнорувати наявність уставновленої гри на пристрої, позначаючи іншу особисту покупку."));
 				put("index", 9);
 			}
 			
@@ -253,8 +285,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Dismiss Warning",
-					"Скрытие предупреждения"));
-				put("description", "Скрывать предупреждение об отсуствии игры, следуя условиям лицензирования.");
+					"Скрытие предупреждения",
+					"Приховані попередження"));
+				put(new TranslationResource("description",
+					"Hide warning about game absense, following licensing conditions.",
+					"Скрывать предупреждение об отсуствии игры, следуя условиям лицензирования.",
+					"Приховувати попередження про відсутність гри, слідуючи умовам ліцензування."));
 				put("index", 10);
 			}
 			
@@ -268,7 +304,8 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Advertisement",
-					"Объявления"));
+					"Объявления",
+					"Оголошення"));
 				put("collapsible", false);
 				put("index", 11);
 			}
@@ -283,8 +320,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Support Modification",
-					"Поддержка модификаций"));
-				put("description", "Поддерживать разработчиков модификаций и создателей Inner Core, добавляя рекламные карточки.");
+					"Поддержка модификаций",
+					"Підтримка модифікацій"));
+				put(new TranslationResource("description",
+					"Support modification developers and Inner Core creators by adding promotional cards.",
+					"Поддерживать разработчиков модификаций и создателей Inner Core, добавляя рекламные карточки.",
+					"Підтримувати розробників модифікацій і творців Inner Core, додаючи рекламні картки."));
 				put("index", 12);
 			}
 			
@@ -298,8 +339,12 @@ public class InstantConfigInformation extends AbstractResource {
 			{
 				put(new TranslationResource("name",
 					"Block Everything",
-					"Блокировка всего"));
-				put("description", "Запретить добавление любых рекламных объявлений, отказываясь от поддержки создателей Horizon.");
+					"Блокировка всего",
+					"Блокування всього"));
+				put(new TranslationResource("description",
+					"Prohibit addition of any advertisements, refusing to support creators of Horizon.",
+					"Запретить добавление любых рекламных объявлений, отказываясь от поддержки создателей Horizon.",
+					"Заборонити додавання будь-яких рекламних оголошень, відмовляючись від підтримки творців Horizon."));
 				put("index", 13);
 			}
 			

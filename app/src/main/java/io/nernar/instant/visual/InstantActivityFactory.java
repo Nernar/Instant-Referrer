@@ -1,19 +1,23 @@
 package io.nernar.instant.visual;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.widget.RelativeLayout;
 import com.zhekasmirnov.horizon.launcher.pack.Pack;
 import io.nernar.instant.referrer.InstantConfig;
 import io.nernar.instant.storage.external.InstantConfigInformation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import org.json.JSONObject;
 import org.mineprogramming.horizon.innercore.view.config.ConfigPage;
 import org.mineprogramming.horizon.innercore.view.page.PagesManager;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class InstantActivityFactory extends Pack.MenuActivityFactory {
-	private PagesManager pagesManager;
+	private Object pagesManager = null;
 	
 	@Override
 	public String getMenuTitle() {
@@ -46,17 +50,30 @@ public class InstantActivityFactory extends Pack.MenuActivityFactory {
 	
 	@Override
 	public void onCreateLayout(Activity activity, RelativeLayout content) {
-		// TODO: ConfigView already deprecated and located in org.mineprogramming.horizon.innercore.view.config
+		// ConfigView already deprecated and located in org.mineprogramming.horizon.innercore.view.config
 		// without any backport/backsupport implementation, what are you doing, Igor?
-		// ConfigView config = new ConfigView(activity, "Instant Referrer", InstantConfig.getFile().getAbsolutePath());
-		pagesManager = new PagesManager(content);
-		ConfigPage config = new ConfigPage(pagesManager, "Instant Referrer", InstantConfig.getFile().getAbsolutePath());
-		config.loadInfo(new InstantConfigInformation());
-		pagesManager.reset(config);
+		try {
+			pagesManager = new PagesManager(content);
+			ConfigPage config = new ConfigPage((PagesManager) pagesManager, "Instant Referrer", InstantConfig.getFile().getAbsolutePath());
+			config.loadInfo(new InstantConfigInformation());
+			((PagesManager) pagesManager).reset(config);
+		} catch (NoClassDefFoundError any) {
+			try {
+				Class clazz = Class.forName("org.mineprogramming.horizon.innercore.view.config.ConfigView");
+				Constructor constructor = clazz.getConstructor(Context.class, String.class, String.class);
+				Object object = constructor.newInstance(activity, "Instant Referrer", InstantConfig.getFile().getAbsolutePath());
+				object.getClass().getMethod("loadInfo", JSONObject.class).invoke(object, new InstantConfigInformation());
+			} catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 	
 	@Override
 	public boolean onBackPressed() {
-		return pagesManager.navigateBack();
+		if (pagesManager == null) {
+			return false;
+		}
+		return ((PagesManager) pagesManager).navigateBack();
 	}
 }

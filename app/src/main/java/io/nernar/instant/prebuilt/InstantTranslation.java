@@ -73,6 +73,7 @@ public class InstantTranslation extends TranslationResource {
 	{
 		put(new ENGLISH());
 		put(new RUSSIAN());
+		put(new UKRAINIAN());
 	}
 	
 	public final class ENGLISH extends AbstractResource {
@@ -162,6 +163,51 @@ public class InstantTranslation extends TranslationResource {
 		@Override
 		public String getId() {
 			return InstantTranslation.this.getId() + ":ru";
+		}
+	}
+	
+	public final class UKRAINIAN extends AbstractResource {
+		{
+			put("instant_referrer", "Середовище раннього запуску");
+			put("exit", "Вийти");
+			put("proceed", "Продовжити");
+			put("yes", "Так");
+			put("no", "Ні");
+			put("abort", "Відміна");
+			put("restart", "Рестарт");
+			put("hold_to_abort", "Утримуйте клавішу для відміни запуску");
+			put("abort_not_supported", "Відміна запуску не підтримується");
+			put("instant_not_supported", "Середовище раннього запуску поки що не підтримується");
+			put("fail_launch", "Не вдалось провести запуск");
+			put("another_instance_running", "Інший пак Inner Core вже був завантажений, тому середовище раннього запуску не може бути використано.");
+			put("restart_to_launch", "Ви бажаєте перезавантажити програму, щоб відновити його?");
+			put("instant_wait", "ШУКАЄМО СЕРЕДОВИЩЕ");
+			put("instant_build", "ПІДГОТУВАННЯ");
+			put("instant_run", "ЗБІРКА");
+			put("fail_remove_launch_button", "Не вдалося видалити клавішу запуску");
+			put("fail_setup_informative_progress", "Не вдалося встановити інформаційний прогрес");
+			put("fail_make_immersive", "Не вдалося перейти в безрамковий режим");
+			put("fail_restyle_padding_recycler", "Не вдалося додати відступи в меню");
+			put("fail_change_recycler_gravity", "Не вдалося змінити гравітаційне притяжіння меню");
+			put("fail_measure_recycler_layout", "Не вдалося розтягнути макет меню");
+			put("fail_add_auto_launch_button", "Не вдалося додати прапорець автозапуску");
+			put("fail_patch_abort_ability", "Не вдалося зазначити можливіть відміни");
+			put("fail_remove_recycler_decoration", "Не вдалося видалити розмежування пунктів меню");
+			put("fail_measure_and_clip_background", "Не вдалося розтягнути й обрізати фон");
+			put("fail_remove_distribution_nodes", "Не вдалося видалити нотатки для розповсюдження");
+			put("fail_close_advertisement_requests", "Не вдалося закрити рекламні запити");
+			put("fail_cleanup_exiting_containers", "Не вдалося очистити існуючі контейнери");
+			put("continue_decision", "Ви все одно бажаєте продовжити?");
+			put("instant_startup_interrupted", "Старт середовища ранього запуску був перерваний або щось відбулось під час завантаження модулів.");
+			put("resource_override_invocation", "Перезапис розміщення ресурсів зазнав краху");
+			put("flipbook_descriptor_invocation", "Створення описів анімованих текстур зазнало краху");
+			put("material_processor_invocation", "Створення обробника матеріалів зазнало краху");
+			put("content_manager_invocation", "Створення основного обробника ресурсів зазнало краху");
+		}
+		
+		@Override
+		public String getId() {
+			return InstantTranslation.this.getId() + ":uk";
 		}
 	}
 }

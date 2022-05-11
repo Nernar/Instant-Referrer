@@ -12,9 +12,10 @@ public class TranslationResource extends AbstractResource {
 		put("en", english);
 	}
 	
-	public TranslationResource(String id, String english, String russian) {
+	public TranslationResource(String id, String english, String russian, String ukrainian) {
 		this(id, english);
 		put("ru", russian);
+		put("uk", ukrainian);
 	}
 	
 	public TranslationResource(String id, String... keysAndSource) {

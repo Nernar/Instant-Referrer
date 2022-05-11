@@ -45,17 +45,15 @@ import java.util.List;
 public class LauncherActivity extends Activity {
 	private static final String[] REQUIRED_PERMISSIONS = { "android.permission.WRITE_EXTERNAL_STORAGE" };
 	private final HashMap<String, PermissionResult> permissionResults = new HashMap<>();
-	
+
 	private enum PermissionResult {
-        GRANTED,
-        DENIED,
-        REJECTED
-    }
-	
+		GRANTED, DENIED, REJECTED
+	}
+
 	private class DecisionResult {
 		String result;
 	}
-	
+
 	private final Runnable LAUNCH_RUNNABLE = new Runnable() {
 		public void run() {
 			requestPermissionsIfNeeded();
@@ -91,76 +89,80 @@ public class LauncherActivity extends Activity {
 				@Override
 				public void run() {
 					View view = LauncherActivity.this.findViewById(R.id.logTextView);
-					if (view != null) initiateDesiredAnimation(view);
+					if (view != null)
+						initiateDesiredAnimation(view);
 				}
 			});
 		}
 	};
-	
-private void initPermissionResults() {
-	synchronized (this.permissionResults) {
-		for (String str : REQUIRED_PERMISSIONS) {
-			this.permissionResults.put(str, ContextCompat.checkSelfPermission(this, str) == 0 ? PermissionResult.GRANTED : PermissionResult.DENIED);
-		}
-	}
-}
 
-private PermissionResult getAllPermissionsResult() {
-	synchronized (this.permissionResults) {
-		for (PermissionResult next : this.permissionResults.values()) {
-			if (next == PermissionResult.REJECTED) {
-				return next;
-			}
-			if (next == PermissionResult.DENIED) {
-				return next;
+	private void initPermissionResults() {
+		synchronized (this.permissionResults) {
+			for (String str : REQUIRED_PERMISSIONS) {
+				this.permissionResults.put(str,
+						ContextCompat.checkSelfPermission(this, str) == 0 ? PermissionResult.GRANTED
+								: PermissionResult.DENIED);
 			}
 		}
-		return PermissionResult.GRANTED;
 	}
-}
 
-private void requestDeniedPermissions() {
-	ArrayList<String> arrayList = new ArrayList<>();
-	synchronized (this.permissionResults) {
-		for (String next : this.permissionResults.keySet()) {
-			if (this.permissionResults.get(next) != PermissionResult.GRANTED) {
-				arrayList.add(next);
-			}
-		}
-		for (String put : arrayList) {
-			this.permissionResults.put(put, PermissionResult.DENIED);
-		}
-	}
-	ActivityCompat.requestPermissions(this, arrayList.toArray(new String[arrayList.size()]), 0);
-}
-
-private void requestPermissionsIfNeeded() {
-	initPermissionResults();
-	if (getAllPermissionsResult() != PermissionResult.GRANTED) {
-		requestDeniedPermissions();
-		while (true) {
-			PermissionResult allPermissionsResult = getAllPermissionsResult();
-			if (allPermissionsResult != PermissionResult.GRANTED) {
-				if (allPermissionsResult == PermissionResult.REJECTED) {
-					requestDeniedPermissions();
+	private PermissionResult getAllPermissionsResult() {
+		synchronized (this.permissionResults) {
+			for (PermissionResult next : this.permissionResults.values()) {
+				if (next == PermissionResult.REJECTED) {
+					return next;
 				}
-				Thread.yield();
-			} else {
-				return;
+				if (next == PermissionResult.DENIED) {
+					return next;
+				}
+			}
+			return PermissionResult.GRANTED;
+		}
+	}
+
+	private void requestDeniedPermissions() {
+		ArrayList<String> arrayList = new ArrayList<>();
+		synchronized (this.permissionResults) {
+			for (String next : this.permissionResults.keySet()) {
+				if (this.permissionResults.get(next) != PermissionResult.GRANTED) {
+					arrayList.add(next);
+				}
+			}
+			for (String put : arrayList) {
+				this.permissionResults.put(put, PermissionResult.DENIED);
+			}
+		}
+		ActivityCompat.requestPermissions(this, arrayList.toArray(new String[arrayList.size()]), 0);
+	}
+
+	private void requestPermissionsIfNeeded() {
+		initPermissionResults();
+		if (getAllPermissionsResult() != PermissionResult.GRANTED) {
+			requestDeniedPermissions();
+			while (true) {
+				PermissionResult allPermissionsResult = getAllPermissionsResult();
+				if (allPermissionsResult != PermissionResult.GRANTED) {
+					if (allPermissionsResult == PermissionResult.REJECTED) {
+						requestDeniedPermissions();
+					}
+					Thread.yield();
+				} else {
+					return;
+				}
 			}
 		}
 	}
-}
 
-public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
-	super.onRequestPermissionsResult(i, strArr, iArr);
-	synchronized (this.permissionResults) {
-		for (int i2 = 0; i2 < strArr.length; i2++) {
-			this.permissionResults.put(strArr[i2], iArr[i2] == 0 ? PermissionResult.GRANTED : PermissionResult.REJECTED);
+	public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+		super.onRequestPermissionsResult(i, strArr, iArr);
+		synchronized (this.permissionResults) {
+			for (int i2 = 0; i2 < strArr.length; i2++) {
+				this.permissionResults.put(strArr[i2],
+						iArr[i2] == 0 ? PermissionResult.GRANTED : PermissionResult.REJECTED);
+			}
 		}
 	}
-}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -170,21 +172,31 @@ public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
 		System.setOut(new DebuggerStream(logView, logScroll));
 		new Thread(LAUNCH_RUNNABLE).start();
 	}
-	
+
 	@Override
-	protected void onStop() {
-		super.onStop();
+	protected void onDestroy() {
+		super.onDestroy();
 		Runtime.getRuntime().exit(0);
 	}
-	
+
 	private void printlnCopyright() {
-		System.out.println("Copyright, 2022 Mozilla Foundation (Mozilla Rhino 1.7.14)");
+		try {
+			Class.forName("org.eclipse.jdt.internal.compiler.batch.Main");
+			System.out.println("Copyright, 2015 IBM Corp (Eclipse Compiler for Java(TM) 3.12.1)");
+		} catch (ClassNotFoundException e) {
+		}
+		try {
+			Class.forName("org.mozilla.javascript.Context");
+			System.out.println("Copyright, 2022 Mozilla Foundation (Mozilla Rhino 1.7.14)");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Copyright, 2015 Mozilla Foundation (Mozilla Rhino 1.7.7)");
+		}
 		System.out.println("Copyright, 2022 Horizon Team (Horizon 1.2, Inner Core)");
 		System.out.println("Copyright, 2022 Nernar (Instant Referrer " + InstantReferrer.getVersionName() + ")");
 		System.out.println("Project uses platform licensed libraries. All rights reserved.");
 		System.out.println();
 	}
-	
+
 	private void initiateDesiredAnimation(View view) {
 		AlphaAnimation animation = new AlphaAnimation(1f, 0.4f);
 		animation.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -193,12 +205,13 @@ public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
 			public void onAnimationEnd(Animation who) {
 				view.setAlpha(0.4f);
 			}
+
 			public void onAnimationStart(Animation who) {}
 			public void onAnimationRepeat(Animation who) {}
 		});
 		view.startAnimation(animation);
 	}
-	
+
 	private String requestPackByUserSelection(List<String> packs) {
 		DecisionResult selection = new DecisionResult();
 		runOnUiThread(new Runnable() {
@@ -227,7 +240,7 @@ public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
 		}
 		return selection.result;
 	}
-	
+
 	private Pack getValidSelectedPack(ContextHolder holder) {
 		String selectedFolder = getSharedPreferences("selected", 0).getString("pack_folder", null);
 		File packsFolder = new File(Environment.getExternalStorageDirectory(), "games/horizon/packs");
@@ -246,7 +259,8 @@ public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
 					System.out.println(StringUtils.getStackTrace(any));
 					try {
 						Thread.sleep(3000);
-					} catch (InterruptedException e) {}
+					} catch (InterruptedException e) {
+					}
 				}
 			}
 			ArrayList<String> availabledPacks = new ArrayList<>();
