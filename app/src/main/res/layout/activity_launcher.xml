@@ -1,0 +1,16 @@
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/logScrollView"
+	android:padding="12dp">
+	
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/logTextView"
+		android:scrollbarSize="0px"
+		android:textColor="@android:color/white"
+		android:textSize="8dp" />
+	
+</ScrollView>

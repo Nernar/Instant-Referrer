@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Base application theme. -->
+	<style name="Theme.MyApplication" parent="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
+		<item name="android:colorBackground">#ff000000</item>
+		<item name="android:colorForeground">#ff000000</item>
+		<item name="android:windowBackground">#ff000000</item>
+	</style>
+</resources>
