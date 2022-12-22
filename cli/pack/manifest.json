@@ -1,0 +1,30 @@
+{
+	"pack": "Instant Referrer",
+	"packVersion": "1.0 test",
+	"packVersionCode": 1,
+	"game": "CLI",
+	"gameVersion": "2022",
+	"developer": "Nernar",
+	"description": {
+		"en": "Interactive or not it doesn't matter.",
+		"ru": "Интерактивная или нет это не имеет значения."
+	},
+
+	"directories": [
+		"assets",
+		"so",
+		"java",
+		"native",
+   		"mods"
+	],
+
+	"keepDirectories": [
+		"innercore",
+		"resourcepacks",
+		"worlds",
+		"modpacks",
+		"modpacks-archive"
+	],
+
+ 	"environmentClass": "com.zhekasmirnov.mcpe161.EnvironmentSetup"
+}
