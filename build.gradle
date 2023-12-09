@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.1'
-		classpath fileTree (dir: 'app/classpath', include: ['*.jar'])
     }
 }
 
