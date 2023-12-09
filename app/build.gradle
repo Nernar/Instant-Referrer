@@ -25,5 +25,6 @@ android {
 }
 
 dependencies {
+	compileOnly fileTree (dir: 'classpath', include: ['*.jar'])
 	implementation fileTree (dir: 'libs', include: ['*.jar'])
 }
