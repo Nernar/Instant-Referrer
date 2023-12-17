@@ -2,7 +2,7 @@ package com.zhekasmirnov.horizon.compiler.packages;
 
 public class ExternalDirectoryManager {
     private boolean shouldDisplayDialog = false;
-    private Location location = Location.INTERNAL;
+    private Location location = Location.EXTERNAL;
 
     public enum Location {
         EXTERNAL,

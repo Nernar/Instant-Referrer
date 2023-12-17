@@ -56,7 +56,7 @@ public class Environment {
     }
 
     public static File getDataDirFile(Object context) {
-        return new File(System.getProperty("user.dir"), "files");
+        return new File(mkdirIfNotExist(new File(System.getProperty("user.dir"), "files")));
     }
 
     public static File getDataDirFile() {
@@ -104,7 +104,7 @@ public class Environment {
     }
 
     public static String getSdCardHomeDir() {
-        return mkdirIfNotExist(new File(System.getProperty("user.dir"), "CCPlusPlusNIDE"));
+        return mkdirIfNotExist(new File(getDataDirFile(), APPLICATION_DIR_NAME));
     }
 
     public static String getSdCardBackupDir() {

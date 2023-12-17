@@ -13,3 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+bin/
+build/
+/cli/files
+/cli/games/horizon/logs
+innercore/inner-core.log
+innercore/mods/
+modpacks/

@@ -51,7 +51,7 @@ public class PackStorage {
 
     public PackDirectory makeNewPackDirectory(String str) {
         String str2;
-        String replaceAll = ((str == null || str.length() == 0) ? "unnamed-pack" : "unnamed-pack").replaceAll("[^a-zA-Z0-9_]", "_");
+        String replaceAll = ((str == null || str.length() == 0) ? "unnamed-pack" : str).replaceAll("[^a-zA-Z0-9_]", "_");
         int i = 0;
         while (true) {
             File file = this.directory;
